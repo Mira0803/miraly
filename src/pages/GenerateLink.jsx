@@ -39,7 +39,7 @@ export default function GenerateLink() {
     const user = userData.user;
 
     const alias = customAlias || Math.random().toString(36).substring(7);
-    const baseUrl = import.meta.env.VITE_APP_URL || window.location.origin;
+    const baseUrl = (import.meta.env.VITE_APP_URL || window.location.origin).replace(/\/$/, "");
 
     let formattedUrl = longUrl;
     if (!formattedUrl.startsWith("http")) {
@@ -181,7 +181,7 @@ export default function GenerateLink() {
                       onChange={(e) =>
                         setCustomAlias(e.target.value)
                       }
-                      className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl placeholder-white/40 focus:ring-2 focus:ring-purple-500"
+                      className="w-full flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl placeholder-white/40 focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
