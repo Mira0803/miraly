@@ -28,13 +28,13 @@ export default function Sidebar({ open, setOpen }) {
             />
           )}
         <Motion.motion.aside
-          initial={{ x: -300 }}
-          animate={{ x: open ? -300 : 0 }}
+          initial={false}
+          animate={{ x: open ? 0 : -300 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         
           className="
-            fixed md:static top-0 left-0 z-50
-            md:w-64 min-h-screen bg-[#0f0f0f] border-r border-white/5 p-6 flex flex-col"
+            fixed md:static top-0 left-0 z-50 md:translate-x-0 md:transform-none!
+            md:w-64 min-h-screen bg-[#0f0f0f] border-r border-white/5  p-6 flex flex-col"
         >
           
           {/* Logo */}
