@@ -68,7 +68,7 @@ export default function Hero({ onGetStarted }) {
 
                         <div className="bg-white rounded-2xl p-3 shadow-lg">
                             <QRCodeSVG
-                                value="https://miraly.com/portfolio"
+                                value="https://miraly.netlify.app/"
                                 size={80}
                                 level="M"
                             />

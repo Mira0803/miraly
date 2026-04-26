@@ -30,6 +30,7 @@ useEffect(() => {
 
         // redirect
         window.location.replace(data.original_url);
+        console.log("shortCode from URL:", shortCode);
     };
 
     fetchLink();
