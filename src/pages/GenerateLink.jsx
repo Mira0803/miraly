@@ -35,35 +35,47 @@ export default function GenerateLink() {
   const handleGenerate = async (e) => {
     e.preventDefault();
 
-
     const { data: userData } = await supabase.auth.getUser();
-
     const user = userData.user;
 
     const alias = customAlias || Math.random().toString(36).substring(7);
-
     const baseUrl = import.meta.env.VITE_APP_URL || window.location.origin;
 
     let formattedUrl = longUrl;
-
     if (!formattedUrl.startsWith("http")) {
       formattedUrl = "https://" + formattedUrl;
     }
 
+    // check duplicate
+    const { data: existing } = await supabase
+      .from("links")
+      .select("id")
+      .eq("short_code", alias)
+      .single();
 
-    if (user) {
-      await supabase.from("links").insert([
-        {
-          original_url: formattedUrl,
-          short_code: alias,
-          user_id: user.id,
-          clicks: 0,
-        },
-      ]);
+    if (existing) {
+      alert("Alias already taken");
+      return;
+    }
+
+    // save link
+    const { error } = await supabase.from("links").insert([
+      {
+        original_url: formattedUrl,
+        short_code: alias,
+        user_id: user?.id || null,
+        clicks: 0,
+      },
+    ]);
+
+    if (error) {
+      alert("Error creating link");
+      console.error(error);
+      return;
     }
 
     setGeneratedLink(`${baseUrl}/r/${alias}`);
-    };
+  };
 
   const handleCopy = async () => {
     if (!generatedLink) return;
