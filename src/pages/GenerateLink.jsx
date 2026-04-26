@@ -42,6 +42,8 @@ export default function GenerateLink() {
 
     const alias = customAlias || Math.random().toString(36).substring(7);
 
+    const baseUrl = import.meta.env.VITE_APP_URL || window.location.origin;
+
     let formattedUrl = longUrl;
 
     if (!formattedUrl.startsWith("http")) {
@@ -60,7 +62,7 @@ export default function GenerateLink() {
       ]);
     }
 
-    setGeneratedLink(`${window.location.origin}/r/${alias}`);
+    setGeneratedLink(`${baseUrl}/r/${alias}`);
     };
 
   const handleCopy = async () => {
