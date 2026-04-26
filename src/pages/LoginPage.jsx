@@ -53,13 +53,16 @@ const handleForgotPassword = async () => {
     };
  
     return (
-        <Motion.motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
+        <div
+
             
             className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white p-6">
-            <div className="bg-white/5 p-8 rounded-2xl w-full max-w-md">
+            <Motion.motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white/5 p-8 rounded-2xl w-full max-w-md"
+                >
                 <h1 className="text-2xl font-bold mb-8 text-center">Login</h1>
 
                 <form onSubmit={handleLogin} className="space-y-4">
@@ -111,7 +114,7 @@ const handleForgotPassword = async () => {
                         Sign Up
                     </Link>
                 </p>
-            </div>
-        </Motion.motion.div>
+            </Motion.motion.div>
+        </div>
     );
 }
